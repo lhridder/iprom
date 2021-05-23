@@ -15,7 +15,7 @@ mv node_exporter-1.1.2.linux-amd64/node_exporter ./
 
 cat > /etc/systemd/system/nodeexporter.service <<- 'EOF'
 [Unit]
-Description=Prometheus
+Description=Node exporter
 
 [Service]
 User=root
