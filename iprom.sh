@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "  _____                           ";
 echo " |_   _|                          ";
 echo "   | |  _ __  _ __ ___  _ __ ___  ";
@@ -7,12 +9,16 @@ echo " |_____| .__/|_|  \___/|_| |_| |_|";
 echo "       | |                        ";
 echo "       |_|                        ";
 
+echo "Make /srv/nodeexporter folder"
 mkdir /srv/nodeexporter
 cd /srv/nodeexporter
+
+echo "Download nodeexporter"
 wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz
 tar -xvf node_exporter-1.1.2.linux-amd64.tar.gz
 mv node_exporter-1.1.2.linux-amd64/node_exporter ./
 
+echo "Adding nodeexporter to systemd"
 cat > /etc/systemd/system/nodeexporter.service <<- 'EOF'
 [Unit]
 Description=Node exporter
@@ -27,8 +33,9 @@ ExecStart=/srv/nodeexporter/node_exporter --collector.disable-defaults --collect
 WantedBy=multi-user.target
 EOF
 
+echo "Starting service"
 systemctl daemon-reload
 systemctl enable --now nodeexporter
-SERVER_IP=$(curl -s http://checkip.amazonaws.com)
 
+SERVER_IP=$(curl -s http://checkip.amazonaws.com)
 echo "Connect this ip to prometheus: $SERVER_IP with port 9100"
