@@ -38,4 +38,4 @@ systemctl daemon-reload
 systemctl enable --now nodeexporter
 
 SERVER_IP=$(curl -s http://checkip.amazonaws.com)
-echo "Connect this ip to prometheus: $SERVER_IP with port 9100"
+echo "Add this endpoint in your Prometheus instance: http://$SERVER_IP:9100"
