@@ -14,9 +14,9 @@ mkdir /srv/nodeexporter
 cd /srv/nodeexporter
 
 echo "Download nodeexporter"
-wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz
-tar -xvf node_exporter-1.1.2.linux-amd64.tar.gz
-mv node_exporter-1.1.2.linux-amd64/node_exporter ./
+wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
+tar -xvf node_exporter-1.3.1.linux-amd64.tar.gz
+mv node_exporter-1.3.1.linux-amd64/node_exporter ./
 
 echo "Adding nodeexporter to systemd"
 cat > /etc/systemd/system/nodeexporter.service <<- 'EOF'
