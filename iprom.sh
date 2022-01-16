@@ -27,7 +27,7 @@ Description=Node exporter
 User=root
 Group=root
 WorkingDirectory=/srv/nodeexporter
-ExecStart=/srv/nodeexporter/node_exporter --collector.disable-defaults --collector.cpu --collector.cpufreq --collector.filesystem --collector.meminfo --collector.netdev --collector.time --collector.diskstats --collector.stat
+ExecStart=/srv/nodeexporter/node_exporter --collector.disable-defaults --collector.cpu --collector.cpufreq --collector.filesystem --collector.meminfo --collector.netdev --collector.time --collector.diskstats --collector.stat --collector.mdadm
 
 [Install]
 WantedBy=multi-user.target
