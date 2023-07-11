@@ -9,14 +9,10 @@ echo " |_____| .__/|_|  \___/|_| |_| |_|";
 echo "       | |                        ";
 echo "       |_|                        ";
 
-echo "Make /srv/nodeexporter folder"
-mkdir /srv/nodeexporter
-cd /srv/nodeexporter
-
 echo "Download nodeexporter"
-wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
-tar -xvf node_exporter-1.3.1.linux-amd64.tar.gz
-mv node_exporter-1.3.1.linux-amd64/node_exporter ./
+wget https://github.com/prometheus/node_exporter/releases/download/v1.6.0/node_exporter-1.6.0.linux-amd64.tar.gz
+tar -xvf node_exporter-1.6.0.linux-amd64.tar.gz
+mv node_exporter-1.6.0.linux-amd64/node_exporter /usr/sbin/node_exporter
 
 echo "Adding nodeexporter to systemd"
 cat > /etc/systemd/system/nodeexporter.service <<- 'EOF'
@@ -26,8 +22,7 @@ Description=Node exporter
 [Service]
 User=root
 Group=root
-WorkingDirectory=/srv/nodeexporter
-ExecStart=/srv/nodeexporter/node_exporter --collector.disable-defaults --collector.cpu --collector.cpufreq --collector.filesystem --collector.meminfo --collector.netdev --collector.time --collector.diskstats --collector.stat --collector.mdadm
+ExecStart=/usr/sbin/node_exporter --collector.disable-defaults --collector.cpu --collector.cpufreq --collector.filesystem --collector.meminfo --collector.netdev --collector.time --collector.diskstats --collector.stat --collector.mdadm
 
 [Install]
 WantedBy=multi-user.target
