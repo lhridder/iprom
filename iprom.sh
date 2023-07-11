@@ -22,7 +22,7 @@ Description=Node exporter
 [Service]
 User=root
 Group=root
-ExecStart=/usr/sbin/node_exporter --collector.disable-defaults --collector.cpu --collector.cpufreq --collector.filesystem --collector.meminfo --collector.netdev --collector.time --collector.diskstats --collector.stat --collector.mdadm
+ExecStart=/usr/sbin/node_exporter --collector.disable-defaults --collector.cpu --collector.cpufreq --collector.filesystem --collector.meminfo --collector.netdev --collector.time --collector.diskstats --collector.stat --collector.mdadm --collector.hwmon
 
 [Install]
 WantedBy=multi-user.target
